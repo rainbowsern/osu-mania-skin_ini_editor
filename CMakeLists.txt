@@ -1,15 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(skin_ini_editor C)
 
-# 根据平台设置不同的编译选项
-if(WIN32)
-    # Windows 设置
-    set(EXECUTABLE_NAME skin_ini_editor.exe)
-    # add_definitions(-DWIN32_LEAN_AND_MEAN)
-else()
-    # Linux 设置
-    set(EXECUTABLE_NAME skin_ini_editor)
-endif()
+set(EXECUTABLE_NAME skin_ini_editor)
 
 # 包含源文件目录
 include_directories(src)
