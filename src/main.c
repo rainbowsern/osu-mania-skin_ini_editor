@@ -1,26 +1,12 @@
-#include "../include/buffer.h"
-#include "../include/editor.h"
-#include "../include/tool.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-#ifdef _WIN32
-#include <windows.h>
-#endif
+#include "my_head.h"
 
 int main()
 {
-#ifdef _WIN32
-    SetConsoleOutputCP(65001);
-    SetConsoleCP(65001);
-#endif
+    init_console_style();
+    print_introduction();
 
     int choice;
 
-    // 确认程序位置
-    printf("提示：确保程序和skin.ini在同一个目录下再运行程序，否则程序无法正常运行\n");
-    printf("说明：本程序只为mania模式修改部分skin.ini内容\n");
     printf("1. 继续\n");
     printf("2. 退出\n");
 
@@ -28,14 +14,14 @@ int main()
     if (choice == 2)
         return 0;
 
-    clear_screen();
+    split_screen();
 
     // 读取整个文件到缓冲区
     char* buffer = file_reader();
 
     if (buffer == NULL) {
-        printf("错误：读取文件时发生错误\n");
-        winpause();
+        printf("错误：读取文件时发生错误，程序即将退出\n");
+        win_error_pause();
         return 1;
     }
     printf("读取文件成功\n");
@@ -55,8 +41,6 @@ int main()
         // 选择键数
         int position;
         int key = read_key();
-        clear_screen();
-        printf("读取到的键数：%d\n", key);
 
         // 查找此键数设置位置
         char targetStr[20];
@@ -70,10 +54,11 @@ int main()
             continue;
         }
 
-        clear_screen();
+        split_screen();
 
         // 主要功能
         while (1) {
+            printf("读取到的键数：%d\n", key);
             printf("选择功能\n");
             printf("1. 修改轨道起始位置或居中轨道\n");
             printf("2. 修改轨道宽度\n");
@@ -84,7 +69,7 @@ int main()
             printf("7. 退出程序\n");
 
             choice = make_choice(1, 7);
-            clear_screen();
+            split_screen();
             if (choice == 6)
                 break;
             if (choice == 7)
@@ -108,10 +93,10 @@ int main()
                 buffer = edit_score_and_combo_position(buffer, key, position);
                 break;
             default:
-                printf("严重错误：无法到达的位置\n");
+                printf("错误：无法到达的位置\n");
             }
 
-            clear_screen();
+            split_screen();
         }
     }
     return 0;
