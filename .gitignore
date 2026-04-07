@@ -1,1 +1,8 @@
-for_test/
+*
+!CMakeLists.txt
+!README.md
+!build_linux.sh
+!build_windows.bat
+!src/
+!update_log.txt
+!.gitignore
