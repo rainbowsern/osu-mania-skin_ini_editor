@@ -39,14 +39,30 @@ int main()
     while (1) {
 
         // 选择键数
-        int position;
+        int position = 0;
+        int nextStartPosition = 0;
         int key = read_key();
 
         // 查找此键数设置位置
-        char targetStr[20];
-        sprintf(targetStr, "\nKeys: %d", key);
+        for (int i = 0; i < 50; i++) {
+            // 先找Keys设置位置
+            position = search_string("\nKeys:", buffer, nextStartPosition, "\0");
+            // 连Keys设置都没有直接退出查找
+            if (position == -1)
+                break;
 
-        position = search_string(targetStr, buffer, 0, "\0");
+            nextStartPosition = position;
+            nextStartPosition += strlen("\nKeys:");
+
+            // 再确认之后的键数，这么做是为了兼容冒号后有无空格
+            char targetKey[10];
+            sprintf(targetKey, "%d", key);
+            position = search_string(targetKey, buffer, nextStartPosition, "\n");
+
+            // 找到了，退出
+            if (position != -1)
+                break;
+        }
 
         // 如果没有设置
         if (position == -1) {

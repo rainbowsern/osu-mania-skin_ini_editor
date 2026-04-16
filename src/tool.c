@@ -17,7 +17,8 @@ void print_introduction()
     printf("  重要提示：\n");
     printf("    1. 请确保程序与 skin.ini 文件在同一目录下运行，否则程序无法正常工作\n");
     printf("    2. 本程序假定你的 skin.ini 无语法错误，仅修改现有设置（不创建新设置条目）\n");
-    printf("    3. 若出现意外情况，请优先检查 skin.ini 的语法完整性\n\n");
+    printf("    3. 若出现意外情况，请优先检查 skin.ini 的语法完整性\n");
+    printf("    4. 在未进行备份且已进行修改或者正在修改中，最好不要强制退出程序，否则可能导致skin.ini内容异常或缺失\n\n");
 }
 
 void clearInputBuffer()

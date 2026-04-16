@@ -268,7 +268,7 @@ char* disable_barline(char* buffer, int key, int position)
 // 修改打击位置和轨道光位置
 char* edit_hitposition_and_lightposition(char* buffer, int key, int position)
 {
-    printf("提示：HitPosition是判定线位置以及打击特效图片显示的位置，LightPosition是轨道光显示的位置，如果你的皮肤没有轨道光，可忽视此设置\n");
+    printf("提示：HitPosition是判定线位置以及打击特效图片显示的位置，LightPosition是轨道光显示的位置，如果你的皮肤轨道光被替换为透明图片，可忽视此设置\n");
 
     // 功能部分
     while (1) {
